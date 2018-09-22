@@ -1,0 +1,43 @@
+<div class="header">
+<h2>Customers</h2>
+<ul class="menu">
+    <li [class.active]="isGrid && !isMap" (click)="toggleView(viewType.Grid)">Card View</li>
+    <li [class.active]="!isGrid && !isMap" (click)="toggleView(viewType.List)">List View</li>
+    <li [class.active]="!isGrid && isMap" (click)="toggleView(viewType.Map)">Map View</li>
+</ul>
+</div>
+
+<ul class="customerContainer" *ngIf="!isMap">
+    <li class="customerCard col-md-3"  [class.dirCol] = "!isGrid"  *ngFor="let customer of collection | paginate: { itemsPerPage: 8, currentPage: p }"> 
+        <h2>{{customer.name}}</h2>
+        <img [src]="customer.imgSrc" />
+        <p>{{customer.city}}</p>
+        <p>{{customer.country}}</p>
+    </li>
+</ul>
+
+<agm-map #gm *ngIf="collection.length && isMap" style="height: 700px; width:100%"
+  [latitude]="collection[0].lat"
+  [longitude]="collection[0].long" >
+
+   <agm-marker 
+   *ngFor="let c of collection | paginate: { itemsPerPage: 8, currentPage: p }"
+   (markerClick)="gm.lastOpen?.close(); gm.lastOpen = infoWindow; clickedMarker(c.name,c.imgSrc,c.city)"
+   [latitude]="c.lat"
+      [longitude]="c.long"
+      [label]="getFirstChar(c.name)" 
+      [markerDraggable]="c.draggable"
+      (dragEnd)="markerDragEnd(c, $event)">
+      
+
+    <agm-info-window #infoWindow >
+        <img [src]="imgSrc" />
+        <p><strong>{{text}}</strong></p>
+        <p><strong>{{city}}</strong></p>
+    </agm-info-window>
+  </agm-marker> 
+
+</agm-map>
+
+
+<pagination-controls (pageChange)="p = $event"></pagination-controls>

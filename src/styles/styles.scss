@@ -1,0 +1,77 @@
+/* this file will be extracted to main dist folder and is imported in index.html */
+/* This file is for setting global styles  */
+@import 'grid';
+body, *{
+  padding: 0px;
+  margin: 0px;
+  font-family: 'Hind', sans-serif !important;
+}
+
+
+.parent-container{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    // display: flex;
+    min-width: 1200px;
+}
+
+
+.customerCard img {
+  height: 80px;
+  width: 80px;
+  float: left;
+}
+
+
+li.customerCard p {
+  margin: 0 0 10px 10px;
+  font-size: 1.2em;
+  margin-bottom: 0px;
+}
+
+.customerCard h2 {
+  margin: 0px;
+  background-color: #5b9bea;
+  color: #fff;
+  font-weight: bold;
+  padding: 7px 13px;
+  margin-bottom: 15px;
+}
+
+li.customerCard {
+  list-style-type: none;
+  // flex-grow: 1;
+  margin: 0.5%;
+}
+
+.active{
+  font-weight: bold
+}
+.dirCol{
+  width: 99% !important;  
+}
+
+pagination-controls {
+  display: block;
+  float: left;
+  clear: both;
+  margin-top: 50px;
+}
+
+ul.menu li {
+  display: inline-block;
+  margin-right: 30px;
+}
+
+.header{
+  margin: 0.5%;
+}
+
+@media screen and (max-width: 1400px) {
+  .imageDetail {
+    height: 450px !important;
+  }
+}
